@@ -428,5 +428,165 @@ footer span {
   );
 
   console.log('AGT Arena conectado ao Supabase!');
-</script></body>
+</script>
+<style>
+  .agt-auth {
+    max-width: 480px;
+    margin: 45px auto;
+    padding: 25px;
+    background: #100d19;
+    border: 1px solid #792cff;
+    border-radius: 18px;
+    color: white;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 0 20px #792cff33;
+  }
+  .agt-auth h2 {
+    color: #bd83ff;
+    text-align: center;
+  }
+  .agt-auth input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px;
+    margin: 8px 0 15px;
+    border: 1px solid #6633aa;
+    border-radius: 8px;
+    background: #211a30;
+    color: white;
+  }
+  .agt-auth button {
+    width: 100%;
+    padding: 13px;
+    margin: 6px 0;
+    border: 0;
+    border-radius: 8px;
+    background: #812cff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .agt-auth p {
+    color: #d7c9ed;
+    font-size: 14px;
+  }
+  #agt-message {
+    overflow-wrap: anywhere;
+    text-align: center;
+  }
+</style>
+
+<section class="agt-auth">
+  <h2>🐍 AGT ARENA</h2>
+  <p>Entre para fazer parte da nossa família!</p>
+
+  <h3>Criar minha conta</h3>
+  <form id="agt-register">
+    <label>Nick do jogo (precisa conter AGT)</label>
+    <input id="agt-nick" placeholder="Ex: AGT Quik" required>
+
+    <label>E-mail</label>
+    <input id="agt-email" type="email" placeholder="Seu e-mail" required>
+
+    <label>Senha (mínimo 6 caracteres)</label>
+    <input id="agt-password" type="password" minlength="6" placeholder="Crie uma senha" required>
+
+    <button type="submit">CRIAR CONTA</button>
+  </form>
+
+  <hr>
+
+  <h3>Já tenho uma conta</h3>
+  <form id="agt-login">
+    <input id="agt-login-email" type="email" placeholder="Seu e-mail" required>
+    <input id="agt-login-password" type="password" placeholder="Sua senha" required>
+    <button type="submit">ENTRAR</button>
+  </form>
+
+  <button id="agt-logout" type="button" hidden>Sair da conta</button>
+  <p id="agt-message">AGT Arena — Aliança • Garra • Talento</p>
+</section>
+
+<script>
+(function () {
+  const db = window.agtSupabase;
+  const message = document.getElementById('agt-message');
+
+  function avisar(texto) {
+    message.textContent = texto;
+  }
+
+  if (!db) {
+    avisar('Erro ao iniciar a conexão com o Supabase.');
+    return;
+  }
+
+  document.getElementById('agt-register').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const nick = document.getElementById('agt-nick').value.trim();
+    const email = document.getElementById('agt-email').value.trim();
+    const password = document.getElementById('agt-password').value;
+
+    if (!/agt/i.test(nick)) {
+      avisar('Seu nick precisa conter AGT.');
+      return;
+    }
+
+    avisar('Criando sua conta...');
+
+    const { data, error } = await db.auth.signUp({
+      email,
+      password,
+      options: {
+        data: { nick }
+      }
+    });
+
+    if (error) {
+      avisar('Erro: ' + error.message);
+      return;
+    }
+
+    if (data.session) {
+      avisar('Conta criada! Bem-vindo à AGT!');
+    } else {
+      avisar('Cadastro recebido! Confira seu e-mail para confirmar a conta.');
+    }
+  });
+
+  document.getElementById('agt-login').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById('agt-login-email').value.trim();
+    const password = document.getElementById('agt-login-password').value;
+
+    avisar('Entrando...');
+
+    const { error } = await db.auth.signInWithPassword({
+      email,
+      password
+    });
+
+    if (error) {
+      avisar('Erro ao entrar: ' + error.message);
+    } else {
+      avisar('Login realizado com sucesso! Bem-vindo à AGT!');
+    }
+  });
+
+  document.getElementById('agt-logout').addEventListener('click', async function() {
+    const { error } = await db.auth.signOut();
+    avisar(error ? error.message : 'Você saiu da sua conta.');
+  });
+
+  db.auth.onAuthStateChange(function(event, session) {
+    document.getElementById('agt-logout').hidden = !session;
+    if (session) {
+      avisar('Conectado: ' + session.user.email);
+    }
+  });
+})();
+</script>
+</body>
 </html>
