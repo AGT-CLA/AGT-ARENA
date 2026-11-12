@@ -415,5 +415,18 @@ footer span {
   <p>Uma família, um propósito, uma aliança.</p>
 </footer>
 
-</body>
+<!-- Conexão do AGT Arena com Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = 'https://lbknsgfpfxkvypkxbcmy.supabase.co';
+
+  const SUPABASE_KEY = 'sb_publishable_HMTbt0R6ffjBExr_kdCYDA_xmnU6xXA';
+
+  window.agtSupabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+  console.log('AGT Arena conectado ao Supabase!');
+</script></body>
 </html>
