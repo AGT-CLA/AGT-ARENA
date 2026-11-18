@@ -19,12 +19,18 @@ body{background:radial-gradient(ellipse at 50% 38%,#30104e 0%,#170b26 38%,#09060
 </style></head><body><div class="sky"><div class="glow one"></div><div class="glow two"></div><div class="ring"></div><div class="neon-line"></div><div class="neon-line second"></div><div class="dots"></div></div>
 <main class="shell"><div class="brand">AGT</div><div class="arena">ARENA</div>
 <div class="field"><label for="nick">Nickname</label><input id="nick" maxlength="24" placeholder="Digite seu nickname" autocomplete="nickname"></div>
-<div class="field"><label for="server">Servidor</label><select id="server"><option value="Brasil">Brasil</option></select></div>
+<div class="field"><label for="server">Servidor Slither.io</label><select id="server"><option value="Brasil">Brasil</option></select></div>
 
 <button class="play" id="play">▶ &nbsp; PLAY ONLINE</button><button class="settings" id="settings">⚙ &nbsp; SETTINGS</button><div class="demo" id="demo"></div><div class="note">AGT MOD • PRÉVIA VISUAL 0.1</div></main>
 <script>
-
 const demo=document.getElementById("demo");
-document.getElementById("play").addEventListener("click",()=>{const nick=document.getElementById("nick").value.trim();demo.classList.add("show");demo.textContent=nick?("Prévia: "+nick+" • "+document.getElementById("server").value+"+". O jogo online ainda não está conectado nesta demonstração."):"Digite seu nickname para visualizar a configuração de entrada. O jogo online ainda não está conectado nesta demonstração.";});
-document.getElementById("settings").addEventListener("click",()=>{demo.classList.add("show");demo.textContent="Painel de configurações: esta área será detalhada depois que você aprovar o visual da tela inicial.";});
+document.getElementById("play").addEventListener("click",()=>{
+ const nick=document.getElementById("nick").value.trim();
+ demo.classList.add("show");
+ demo.textContent=nick?("Prévia de entrada: "+nick+" • Servidor: Brasil. A conexão com o Slither.io ainda não está implementada nesta demonstração."):"Digite seu nickname para visualizar a tela de entrada. A conexão com o Slither.io ainda não está implementada nesta demonstração.";
+});
+document.getElementById("settings").addEventListener("click",()=>{
+ demo.classList.add("show");
+ demo.textContent="As configurações serão definidas depois que aprovarmos o visual desta tela.";
+});
 </script></body></html>
