@@ -6,10 +6,12 @@
 <meta name="theme-color" content="#090611">
 <title>AGT MOD • Entrar</title>
 <style>
-*{box-sizing:border-box}body{margin:0;min-height:100vh;padding:24px;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 20%,#30104e,#12091e 55%,#07050c);font-family:Arial,sans-serif;color:#fff}.card{width:min(100%,440px);padding:28px 24px;border:1px solid #a85bdf66;border-radius:24px;background:linear-gradient(150deg,#251237ed,#100a1cf5);box-shadow:0 20px 70px #0009,0 0 35px #9d45e533;text-align:center}.brand{font-size:66px;line-height:1;font-weight:1000;letter-spacing:4px;color:#e9e9f5;text-shadow:0 0 20px #bb7aff66}.arena{margin:7px 0 24px;letter-spacing:8px;color:#d7b5f4;font-size:13px}.intro{font-size:13px;color:#c8b8d8;margin-bottom:20px}.tabs{display:flex;gap:8px;margin-bottom:18px}.tabs button{flex:1;background:#ffffff0a;color:#d8c4ed;border:1px solid #8c5bb766;padding:11px;border-radius:10px;font-weight:bold}.tabs button.active{background:#8a36c9;color:white;border-color:#d4a2ff}label{display:block;text-align:left;color:#cdb5e7;font-size:11px;font-weight:bold;letter-spacing:1px;margin:13px 0 7px}input{width:100%;height:47px;border:1px solid #765091;border-radius:10px;background:#0b0712;color:white;padding:0 13px;font-size:14px;outline:none}input:focus{border-color:#c48bff;box-shadow:0 0 0 3px #a855f72b}.primary{width:100%;height:49px;margin-top:20px;border:0;border-radius:11px;background:linear-gradient(100deg,#e8ceff,#b36af0 55%,#8dceff);color:#180923;font-weight:1000;letter-spacing:1px}.secondary{margin-top:12px;background:transparent;border:0;color:#cda6f4;padding:8px}.message{min-height:36px;margin-top:14px;font-size:12px;line-height:1.5;color:#d9c4ed;overflow-wrap:anywhere}.foot{font-size:10px;color:#91839e;margin-top:14px}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;padding:86px 24px 24px;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 20%,#30104e,#12091e 55%,#07050c);font-family:Arial,sans-serif;color:#fff}.card{width:min(100%,440px);padding:28px 24px;border:1px solid #a85bdf66;border-radius:24px;background:linear-gradient(150deg,#251237ed,#100a1cf5);box-shadow:0 20px 70px #0009,0 0 35px #9d45e533;text-align:center}.brand{font-size:66px;line-height:1;font-weight:1000;letter-spacing:4px;color:#e9e9f5;text-shadow:0 0 20px #bb7aff66}.arena{margin:7px 0 24px;letter-spacing:8px;color:#d7b5f4;font-size:13px}.intro{font-size:13px;color:#c8b8d8;margin-bottom:20px}.tabs{display:flex;gap:8px;margin-bottom:18px}.tabs button{flex:1;background:#ffffff0a;color:#d8c4ed;border:1px solid #8c5bb766;padding:11px;border-radius:10px;font-weight:bold}.tabs button.active{background:#8a36c9;color:white;border-color:#d4a2ff}label{display:block;text-align:left;color:#cdb5e7;font-size:11px;font-weight:bold;letter-spacing:1px;margin:13px 0 7px}input{width:100%;height:47px;border:1px solid #765091;border-radius:10px;background:#0b0712;color:white;padding:0 13px;font-size:14px;outline:none}input:focus{border-color:#c48bff;box-shadow:0 0 0 3px #a855f72b}.primary{width:100%;height:49px;margin-top:20px;border:0;border-radius:11px;background:linear-gradient(100deg,#e8ceff,#b36af0 55%,#8dceff);color:#180923;font-weight:1000;letter-spacing:1px}.secondary{margin-top:12px;background:transparent;border:0;color:#cda6f4;padding:8px}.message{min-height:36px;margin-top:14px;font-size:12px;line-height:1.5;color:#d9c4ed;overflow-wrap:anywhere}.foot{font-size:10px;color:#91839e;margin-top:14px}
+ .topbar{position:fixed;z-index:5;top:0;left:0;right:0;height:62px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;background:#090611dd;border-bottom:1px solid #8f4bc744;backdrop-filter:blur(12px)}.topbrand{font-size:15px;font-weight:1000;letter-spacing:2px;color:#f1e8ff}.topbrand span{color:#c58aff}.topenter{border:1px solid #b66bfa;border-radius:10px;background:#8b35ff22;color:#fff;font-size:11px;font-weight:900;letter-spacing:1px;padding:11px 17px}
 </style>
 </head>
 <body>
+<header class="topbar"><div class="topbrand">AGT <span>MOD</span></div><button class="topenter" id="topEnter" type="button">ENTRAR</button></header>
 <main class="card">
   <div class="brand">AGT</div><div class="arena">ARENA</div>
   <p class="intro">Entre com sua conta AGT Arena para continuar.</p>
@@ -59,6 +61,10 @@
     say(registering ? "Use seu nick AGT e os dados da sua conta." : "Entre com a mesma conta usada no AGT Arena.");
   }
 
+  document.getElementById("topEnter").addEventListener("click", () => {
+    setMode("login");
+    document.getElementById("email").focus();
+  });
   document.getElementById("loginTab").addEventListener("click", () => setMode("login"));
   document.getElementById("registerTab").addEventListener("click", () => setMode("register"));
 
