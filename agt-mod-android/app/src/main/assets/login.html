@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="theme-color" content="#090611">
+<title>AGT MOD • Entrar</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;padding:24px;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 20%,#30104e,#12091e 55%,#07050c);font-family:Arial,sans-serif;color:#fff}.card{width:min(100%,440px);padding:28px 24px;border:1px solid #a85bdf66;border-radius:24px;background:linear-gradient(150deg,#251237ed,#100a1cf5);box-shadow:0 20px 70px #0009,0 0 35px #9d45e533;text-align:center}.brand{font-size:66px;line-height:1;font-weight:1000;letter-spacing:4px;color:#e9e9f5;text-shadow:0 0 20px #bb7aff66}.arena{margin:7px 0 24px;letter-spacing:8px;color:#d7b5f4;font-size:13px}.intro{font-size:13px;color:#c8b8d8;margin-bottom:20px}.tabs{display:flex;gap:8px;margin-bottom:18px}.tabs button{flex:1;background:#ffffff0a;color:#d8c4ed;border:1px solid #8c5bb766;padding:11px;border-radius:10px;font-weight:bold}.tabs button.active{background:#8a36c9;color:white;border-color:#d4a2ff}label{display:block;text-align:left;color:#cdb5e7;font-size:11px;font-weight:bold;letter-spacing:1px;margin:13px 0 7px}input{width:100%;height:47px;border:1px solid #765091;border-radius:10px;background:#0b0712;color:white;padding:0 13px;font-size:14px;outline:none}input:focus{border-color:#c48bff;box-shadow:0 0 0 3px #a855f72b}.primary{width:100%;height:49px;margin-top:20px;border:0;border-radius:11px;background:linear-gradient(100deg,#e8ceff,#b36af0 55%,#8dceff);color:#180923;font-weight:1000;letter-spacing:1px}.secondary{margin-top:12px;background:transparent;border:0;color:#cda6f4;padding:8px}.message{min-height:36px;margin-top:14px;font-size:12px;line-height:1.5;color:#d9c4ed;overflow-wrap:anywhere}.foot{font-size:10px;color:#91839e;margin-top:14px}
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="brand">AGT</div><div class="arena">ARENA</div>
+  <p class="intro">Entre com sua conta AGT Arena para continuar.</p>
+  <div class="tabs">
+    <button id="loginTab" class="active" type="button">ENTRAR</button>
+    <button id="registerTab" type="button">CRIAR CONTA</button>
+  </div>
+  <form id="authForm">
+    <div id="nickWrap" hidden>
+      <label for="nick">NICK DO JOGO (PRECISA CONTER AGT)</label>
+      <input id="nick" autocomplete="nickname" placeholder="Ex.: AGT Shadow">
+    </div>
+    <label for="email">E-MAIL</label>
+    <input id="email" type="email" autocomplete="email" required placeholder="Seu e-mail">
+    <label for="password">SENHA</label>
+    <input id="password" type="password" autocomplete="current-password" minlength="6" required placeholder="Sua senha">
+    <button class="primary" id="submitButton" type="submit">ENTRAR NO AGT MOD</button>
+  </form>
+  <button class="secondary" id="forgot" type="button">Esqueci minha senha</button>
+  <div class="message" id="message">Autenticação protegida pelo Supabase do AGT Arena.</div>
+  <div class="foot">AGT MOD • VERSÃO INICIAL 0.1.0</div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(() => {
+  const SUPABASE_URL = "https://lbknsgfpfxkvypkxbcmy.supabase.co";
+  // Chave publishable/anon pública do projeto. Nunca inserir service_role no aplicativo.
+  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_HMTbt0R6ffjBExr_kdCYDA_xmnU6xXA";
+  const message = document.getElementById("message");
+  const form = document.getElementById("authForm");
+  const nickWrap = document.getElementById("nickWrap");
+  const submitButton = document.getElementById("submitButton");
+  const forgot = document.getElementById("forgot");
+  let mode = "login";
+  let db = null;
+
+  function say(text) { message.textContent = text; }
+  function setMode(next) {
+    mode = next;
+    const registering = mode === "register";
+    nickWrap.hidden = !registering;
+    document.getElementById("loginTab").classList.toggle("active", !registering);
+    document.getElementById("registerTab").classList.toggle("active", registering);
+    submitButton.textContent = registering ? "CRIAR CONTA AGT" : "ENTRAR NO AGT MOD";
+    forgot.hidden = registering;
+    document.getElementById("password").autocomplete = registering ? "new-password" : "current-password";
+    say(registering ? "Use seu nick AGT e os dados da sua conta." : "Entre com a mesma conta usada no AGT Arena.");
+  }
+
+  document.getElementById("loginTab").addEventListener("click", () => setMode("login"));
+  document.getElementById("registerTab").addEventListener("click", () => setMode("register"));
+
+  if (!window.supabase || !window.supabase.createClient) {
+    say("Não foi possível carregar o serviço de autenticação. Verifique sua conexão.");
+    submitButton.disabled = true;
+    return;
+  }
+
+  db = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+    auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false }
+  });
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    submitButton.disabled = true;
+    say(mode === "register" ? "Criando sua conta..." : "Verificando seus dados...");
+
+    try {
+      if (mode === "register") {
+        const nick = document.getElementById("nick").value.trim();
+        if (!/agt/i.test(nick)) throw new Error("Seu nickname precisa conter AGT.");
+        const { data, error } = await db.auth.signUp({
+          email, password, options: { data: { nick } }
+        });
+        if (error) throw error;
+        if (data.session) {
+          say("Conta criada. Abrindo o AGT MOD...");
+          if (window.AndroidAuth) window.AndroidAuth.onAuthenticated(nick);
+        } else {
+          say("Cadastro recebido. Confirme seu e-mail e depois entre no aplicativo.");
+        }
+      } else {
+        const { data, error } = await db.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+        const nick = data.user?.user_metadata?.nick || data.user?.email || "AGT";
+        say("Login confirmado. Abrindo o jogo...");
+        if (window.AndroidAuth) window.AndroidAuth.onAuthenticated(nick);
+      }
+    } catch (error) {
+      say("Não foi possível continuar: " + (error.message || "erro desconhecido"));
+    } finally {
+      submitButton.disabled = false;
+    }
+  });
+
+  forgot.addEventListener("click", async () => {
+    const email = document.getElementById("email").value.trim();
+    if (!email) { say("Digite seu e-mail primeiro."); return; }
+    say("Solicitando recuperação de senha...");
+    const { error } = await db.auth.resetPasswordForEmail(email);
+    say(error ? "Erro: " + error.message : "Se a conta existir, você receberá as instruções por e-mail.");
+  });
+
+  db.auth.getSession().then(({ data, error }) => {
+    if (error) say("Não foi possível verificar a sessão: " + error.message);
+    else if (data.session) {
+      const nick = data.session.user?.user_metadata?.nick || data.session.user?.email || "AGT";
+      say("Sessão ativa. Abrindo o AGT MOD...");
+      if (window.AndroidAuth) window.AndroidAuth.onAuthenticated(nick);
+    }
+  });
+
+  window.agtReturnToLogin = async () => {
+    await db.auth.signOut();
+    setMode("login");
+    say("Você saiu da conta.");
+  };
+})();
+</script>
+</body>
+</html>
