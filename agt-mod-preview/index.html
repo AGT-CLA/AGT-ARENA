@@ -1,134 +1,61 @@
 <!doctype html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#090510">
-<title>AGT MOD — Prévia</title>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#17072d"><title>AGT MOD — Prévia</title>
 <style>
-:root{--purple:#a855f7;--violet:#7c2bd1;--line:#b86cff55;--muted:#b9a8ca;--panel:#100a1c}
-*{box-sizing:border-box}
-body{margin:0;min-height:100vh;padding:26px 18px;color:#fff;font-family:Arial,Helvetica,sans-serif;background:radial-gradient(ellipse at 50% 25%,#32104e 0,#170b26 38%,#09060f 78%,#050409 100%);display:grid;place-items:center;overflow-x:hidden}
-.backdrop{position:fixed;inset:0;pointer-events:none;overflow:hidden}
-.aura{position:absolute;border-radius:50%;filter:blur(75px);opacity:.4;animation:float 10s ease-in-out infinite alternate}
-.aura.a{width:330px;height:330px;left:-100px;top:3%;background:#8b28e8}
-.aura.b{width:390px;height:390px;right:-130px;bottom:-8%;background:#5512a8;animation-delay:-4s}
-.orbit{position:absolute;width:min(78vw,850px);aspect-ratio:1;border:1px solid #b45cff20;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%);box-shadow:0 0 65px #8b2be51a,inset 0 0 65px #8b2be511}
-.orbit:before,.orbit:after{content:"";position:absolute;inset:9%;border:1px solid #c77aff16;border-radius:50%}.orbit:after{inset:20%;border-color:#c77aff12}
-.sparkles{position:absolute;inset:0;background-image:radial-gradient(#e8d5ff 1px,transparent 1px);background-size:105px 105px;opacity:.12}
-@keyframes float{to{transform:translate(28px,-22px) scale(1.12)}}
-.app{position:relative;width:min(100%,940px);padding:26px clamp(18px,4vw,38px) 30px;border:1px solid #c58aff55;border-radius:28px;background:linear-gradient(145deg,#1b1029ed,#0d0917f2);box-shadow:0 25px 90px #000b,0 0 45px #a855f729,inset 0 1px #fff2;backdrop-filter:blur(16px)}
-.top{display:flex;align-items:flex-start;justify-content:space-between;gap:15px}
-.brand-wrap{text-align:center;flex:1;padding-left:85px}
-.brand{font-size:clamp(64px,11vw,88px);font-weight:1000;letter-spacing:6px;line-height:.88;color:#e9edf7;background:linear-gradient(180deg,#fff 5%,#c5cbd9 42%,#717b91 53%,#f4f6ff 76%,#7f879b);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 4px 0 #37304c) drop-shadow(0 0 18px #d5b7ff66);transform:perspective(220px) rotateX(7deg)}
-.arena{font-size:13px;letter-spacing:10px;color:#d9c8f2;margin:8px 0 0 10px;text-shadow:0 0 13px #bc78ff}
-.settings{border:1px solid #bb7aff70;background:#ffffff08;color:#eadcff;border-radius:11px;padding:10px 13px;font-size:11px;font-weight:bold;letter-spacing:1.5px;cursor:pointer;box-shadow:0 0 13px #9d4edd18;white-space:nowrap}
+:root{--line:rgba(210,170,255,.24)}*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;color:#fff}body{min-height:100vh;overflow-x:hidden;background:radial-gradient(ellipse at 50% 20%,#7838b8 0,#34105f 32%,#120821 72%,#080511 100%);display:grid;place-items:center;padding:22px}.sky{position:fixed;inset:0;overflow:hidden;pointer-events:none;background:linear-gradient(180deg,rgba(15,4,34,.08),rgba(4,2,13,.72))}.cloud{position:absolute;width:390px;height:110px;border-radius:100px;background:linear-gradient(180deg,#b783ed66,#52217d33);filter:blur(17px);opacity:.7}.cloud:before,.cloud:after{content:"";position:absolute;border-radius:50%;background:inherit}.cloud:before{width:170px;height:150px;left:55px;top:-68px}.cloud:after{width:210px;height:180px;right:48px;top:-90px}.c1{top:12%;left:-90px}.c2{top:27%;right:-130px;transform:scale(.8)}.c3{bottom:7%;left:18%;transform:scale(1.15);opacity:.35}.bolt{position:absolute;top:12%;right:17%;width:7px;height:210px;background:linear-gradient(transparent,#b7eaff,#fff,transparent);filter:drop-shadow(0 0 9px #8be9ff);transform:rotate(17deg);opacity:.7;clip-path:polygon(45% 0,100% 0,57% 43%,90% 43%,0 100%,35% 52%,8% 52%)}.bolt.two{top:48%;left:12%;height:150px;transform:rotate(-12deg);opacity:.36}.embers{position:absolute;inset:0;background-image:radial-gradient(#fff 1px,transparent 1px),radial-gradient(#c99aff 1px,transparent 1px);background-size:130px 130px,190px 190px;background-position:0 0,50px 70px;opacity:.25}.shell{position:relative;width:min(100%,440px);padding:34px 30px 26px;border:1px solid var(--line);border-radius:28px;background:linear-gradient(155deg,rgba(46,20,76,.88),rgba(17,9,35,.76));box-shadow:0 25px 90px #05020dcc,0 0 50px #a855f733,inset 0 1px #ffffff22;backdrop-filter:blur(13px);text-align:center}.tag{font-size:10px;letter-spacing:5px;color:#d9b8ff;text-transform:uppercase;font-weight:bold}.brand{margin:8px 0 0;font-size:clamp(68px,18vw,92px);font-weight:1000;letter-spacing:5px;line-height:.92;color:#e9edf7;background:linear-gradient(180deg,#fff 5%,#c5cbd9 42%,#717b91 52%,#f4f6ff 75%,#7f879b);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 4px 0 #37304c) drop-shadow(0 0 18px #d5b7ff66);transform:perspective(220px) rotateX(7deg)}.arena{font-size:15px;letter-spacing:9px;text-transform:uppercase;color:#d9c8f2;margin:8px 0 27px 8px;text-shadow:0 0 13px #bc78ff}.field{text-align:left;margin:14px 0}.field label{display:block;font-size:10px;letter-spacing:2px;color:#cdb7e6;margin:0 0 8px 5px;text-transform:uppercase;font-weight:bold}input,select{width:100%;height:49px;border:1px solid #8f61b866;border-radius:12px;background:#10091f;color:white;padding:0 15px;font-size:15px;outline:none}input:focus,select:focus{border-color:#c58aff;box-shadow:0 0 0 3px #a855f72b}select option{background:#170d28}.skin-row{display:flex;gap:9px}.skin{height:40px;flex:1;border:2px solid #ffffff22;border-radius:10px;cursor:pointer;background:var(--skin);box-shadow:inset 0 0 12px #fff3}.skin.active{border-color:white;outline:2px solid #b76cff;outline-offset:2px}.play{width:100%;height:58px;margin:22px 0 12px;border:0;border-radius:14px;color:#180827;font-weight:1000;letter-spacing:2px;font-size:17px;cursor:pointer;background:linear-gradient(100deg,#f3dcff,#bd7bff 48%,#8deaff);box-shadow:0 8px 28px #a855f755,inset 0 1px #fff;transition:.2s}.play:hover{transform:translateY(-2px);filter:brightness(1.1)}.settings{border:1px solid #c69bfa66;background:#ffffff0a;color:#e8d9ff;border-radius:12px;padding:11px 22px;font-weight:bold;letter-spacing:2px;cursor:pointer}.settings:hover{background:#ffffff16}.note{font-size:10px;letter-spacing:1px;color:#a99ab9;margin-top:22px}.demo{display:none;margin-top:14px;padding:12px;border-radius:10px;background:#8d52b52b;color:#ead8ff;font-size:12px;line-height:1.5}.demo.show{display:block}@media(max-width:390px){body{padding:12px}.shell{padding:27px 21px 22px;border-radius:22px}.arena{margin-bottom:22px}}
+
+body{background:radial-gradient(ellipse at 50% 38%,#30104e 0%,#170b26 38%,#09060f 76%,#050409 100%)}
+.ambient{background:radial-gradient(ellipse at 14% 25%,#8e31e51c,transparent 34%),radial-gradient(ellipse at 88% 74%,#a855f71c,transparent 36%)}
+.cloud,.bolt,.embers{display:none}
+.glow{position:absolute;border-radius:50%;filter:blur(65px);opacity:.45;animation:float 9s ease-in-out infinite alternate}
+.glow.one{width:300px;height:300px;left:-90px;top:5%;background:#8b28e8}
+.glow.two{width:340px;height:340px;right:-120px;bottom:0;background:#5412a8;animation-delay:-4s}
+.ring{position:absolute;width:min(76vw,660px);aspect-ratio:1;border:1px solid #b45cff20;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%);box-shadow:0 0 55px #8b2be51a,inset 0 0 55px #8b2be511}
+.ring:before,.ring:after{content:"";position:absolute;inset:8%;border:1px solid #c77aff16;border-radius:50%}
+.ring:after{inset:19%;border-color:#c77aff12}
+.neon-line{position:absolute;height:2px;width:42vw;max-width:540px;background:linear-gradient(90deg,transparent,#9e45ef77,#e4c4ffbb,#9e45ef77,transparent);filter:drop-shadow(0 0 8px #a855f7);opacity:.7;transform:rotate(-23deg);top:25%;left:-5%}
+.neon-line.second{top:auto;left:auto;right:-8%;bottom:22%;transform:rotate(-23deg);opacity:.4}
+.dots{position:absolute;inset:0;background-image:radial-gradient(#e8d5ff 1px,transparent 1px);background-size:95px 95px;opacity:.13}
+@keyframes float{to{transform:translate3d(28px,-22px,0) scale(1.12)}}
+
+/* Layout solicitado: cartão original à esquerda e jogadores fora dele à direita */
+body{display:flex;align-items:center;justify-content:center;gap:24px;padding:24px}
+.layout{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:24px;width:min(100%,760px)}
+.shell{flex:0 0 440px;width:440px}
+.settings,.edit{width:100%;height:44px;margin:9px 0 0;border:1px solid #bd78ff88;border-radius:11px;background:#ffffff09;color:#eadcff;font-weight:900;letter-spacing:1.8px;cursor:pointer;box-shadow:0 0 14px #a855f72b}
 .settings:hover,.edit:hover{background:#9e51d526;box-shadow:0 0 18px #a855f766}
-.content{display:grid;grid-template-columns:minmax(250px,.9fr) minmax(360px,1.1fr);gap:20px;margin-top:28px}
-.panel{border:1px solid #a855f74a;border-radius:17px;background:linear-gradient(145deg,#160d24e8,#0d0817e8);padding:19px;box-shadow:0 0 22px #8b35d51c,inset 0 1px #fff1}
-.field{margin-bottom:16px}
-label,.section-title{display:block;font-size:10px;letter-spacing:2px;color:#d3b7ef;margin:0 0 8px 3px;text-transform:uppercase;font-weight:bold}
-input,select{width:100%;height:47px;border:1px solid #995dcc77;border-radius:11px;background:#0c0715;color:#fff;padding:0 13px;font-size:14px;outline:none;box-shadow:inset 0 0 12px #0005}
-input:focus,select:focus{border-color:#d2a1ff;box-shadow:0 0 0 3px #a855f72b,0 0 15px #a855f733}
-select option{background:#170d28}
-.edit{width:100%;height:46px;border:1px solid #bd78ff99;border-radius:11px;color:#f1e2ff;background:linear-gradient(100deg,#7d35b52b,#b35aff20);font-weight:900;letter-spacing:2px;cursor:pointer;box-shadow:0 0 17px #a855f72b}
-.skin-editor{display:none;margin-top:13px;padding:14px;border:1px solid #a855f755;border-radius:12px;background:#090511}
-.skin-editor.open{display:block}
-.skin-editor p{font-size:11px;color:var(--muted);margin:0 0 12px}
-.skin-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
-.skin-choice{height:35px;border:2px solid #ffffff30;border-radius:9px;background:var(--skin);cursor:pointer;box-shadow:inset 0 0 12px #fff3}
-.skin-choice.selected{border-color:#fff;outline:2px solid #b76cff;outline-offset:2px}
-.skin-name{font-size:10px;color:#e6d4f8;text-align:center;margin-top:11px}
-.right{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.list-panel{padding:15px 13px;min-width:0}
-.list-head{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:13px}
-.section-title{margin:0;font-size:10px;letter-spacing:1.5px}
-.online{font-size:9px;color:#8fffc4;white-space:nowrap}
-.online:before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#55e99b;margin-right:5px;box-shadow:0 0 8px #55e99b}
-.player{display:flex;align-items:center;justify-content:space-between;gap:5px;padding:10px 0;border-bottom:1px solid #ffffff12}
-.player:last-child{border:0}
-.player-name{font-size:11px;font-weight:bold;color:#f0e5fb;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.game{font-size:9px;color:#b9a4cf;margin-top:4px}
-.pill{font-size:8px;color:#d9b8ff;background:#a855f729;border:1px solid #a855f744;border-radius:20px;padding:4px 6px;white-space:nowrap}
-.server-item{padding:10px 0;border-bottom:1px solid #ffffff12}
-.server-item:last-child{border:0}
-.server-code{font-size:11px;font-weight:bold;color:#f0e5fb;letter-spacing:.5px}
-.server-desc{font-size:9px;color:#b9a4cf;margin-top:4px}
-.server-count{font-size:9px;color:#a9f5ce;margin-top:5px}
-.play{display:block;width:100%;height:58px;margin:20px 0 0;border:1px solid #e3c2ff;border-radius:14px;color:#190a28;font-weight:1000;letter-spacing:2.5px;font-size:17px;cursor:pointer;background:linear-gradient(100deg,#f1dcff,#bd7bff 48%,#9a8cff);box-shadow:0 0 10px #c47affaa,0 0 28px #a855f755,inset 0 1px #fff;transition:.2s}
-.play:hover{transform:translateY(-2px);filter:brightness(1.1);box-shadow:0 0 16px #d6a5ff,0 0 38px #a855f788}
-.demo{display:none;margin-top:12px;padding:12px;border:1px solid #a855f766;border-radius:10px;background:#8d52b52b;color:#ead8ff;font-size:12px;line-height:1.5}
-.demo.show{display:block}
-.note{text-align:center;font-size:9px;letter-spacing:2px;color:#8f7da2;margin-top:18px}
-@media(max-width:700px){body{padding:13px}.app{padding:20px 15px 23px;border-radius:22px}.content{grid-template-columns:1fr;margin-top:22px}.brand-wrap{padding-left:65px}.right{grid-template-columns:1fr 1fr}.list-panel{padding:13px 10px}}
-@media(max-width:390px){.right{grid-template-columns:1fr}.brand-wrap{padding-left:0}.top{align-items:center}.brand{font-size:65px}.settings{padding:9px;font-size:9px}.player-name{font-size:12px}}
-</style>
-</head>
-<body>
-<div class="backdrop"><div class="aura a"></div><div class="aura b"></div><div class="orbit"></div><div class="sparkles"></div></div>
-<main class="app">
- <header class="top">
-  <div class="brand-wrap"><div class="brand">AGT</div><div class="arena">ARENA</div></div>
-  <button class="settings" id="settings">⚙ SETTINGS</button>
- </header>
- <section class="content">
-  <div class="panel">
-   <div class="field"><label for="nick">Nickname</label><input id="nick" maxlength="24" placeholder="Digite seu nickname" autocomplete="nickname"></div>
-   <div class="field"><label for="server">Servidor Slither.io</label><select id="server"><option value="Brasil">Brasil</option></select></div>
-   <button class="edit" id="editSkin">✦ &nbsp; EDIT SKIN</button>
-   <div class="skin-editor" id="skinEditor">
-    <p>Escolha uma aparência para sua minhoca:</p>
-    <div class="skin-grid">
-     <button class="skin-choice selected" aria-label="Roxo neon" style="--skin:linear-gradient(90deg,#6c20bd,#d7a1ff,#6c20bd)" data-skin="Roxo neon"></button>
-     <button class="skin-choice" aria-label="Azul elétrico" style="--skin:linear-gradient(90deg,#0757c9,#75d9ff,#0757c9)" data-skin="Azul elétrico"></button>
-     <button class="skin-choice" aria-label="Verde tóxico" style="--skin:linear-gradient(90deg,#168447,#9aff85,#168447)" data-skin="Verde tóxico"></button>
-     <button class="skin-choice" aria-label="Vermelho" style="--skin:linear-gradient(90deg,#a31635,#ff8c9d,#a31635)" data-skin="Vermelho"></button>
-     <button class="skin-choice" aria-label="Dourado" style="--skin:linear-gradient(90deg,#9c6710,#ffe18a,#9c6710)" data-skin="Dourado"></button>
-     <button class="skin-choice" aria-label="Prata" style="--skin:linear-gradient(90deg,#626b7e,#fff,#626b7e)" data-skin="Prata"></button>
-     <button class="skin-choice" aria-label="Rosa" style="--skin:linear-gradient(90deg,#a52b78,#ffb4e1,#a52b78)" data-skin="Rosa"></button>
-     <button class="skin-choice" aria-label="Preto neon" style="--skin:linear-gradient(90deg,#080808,#a855f7,#080808)" data-skin="Preto neon"></button>
-    </div>
-    <div class="skin-name" id="skinName">Selecionada: Roxo neon</div>
-   </div>
-  </div>
-  <div class="right">
-   <section class="panel list-panel">
-    <div class="list-head"><h2 class="section-title">JOGADORES ONLINE</h2><span class="online">AO VIVO*</span></div>
-    <div class="player"><div><div class="player-name">AGT • Shadow</div><div class="game">Slither.io</div></div><span class="pill">JOGANDO</span></div>
-    <div class="player"><div><div class="player-name">AGT • Ghost</div><div class="game">Slither.io</div></div><span class="pill">JOGANDO</span></div>
-    <div class="player"><div><div class="player-name">AGT • Venom</div><div class="game">Slither.io</div></div><span class="pill">JOGANDO</span></div>
-    <div class="player"><div><div class="player-name">AGT • Frost</div><div class="game">Slither.io</div></div><span class="pill">MENU</span></div>
-   </section>
-   <section class="panel list-panel">
-    <div class="list-head"><h2 class="section-title">SERVIDORES</h2><span class="online">REGIÃO</span></div>
-    <div class="server-item"><div class="server-code">BR-01</div><div class="server-desc">Brasil • São Paulo</div><div class="server-count">3 jogadores</div></div>
-    <div class="server-item"><div class="server-code">BR-02</div><div class="server-desc">Brasil • Região 2</div><div class="server-count">1 jogador</div></div>
-    <div class="server-item"><div class="server-code">US-01</div><div class="server-desc">Estados Unidos</div><div class="server-count">0 jogadores</div></div>
-    <div class="server-item"><div class="server-code">EU-01</div><div class="server-desc">Europa</div><div class="server-count">0 jogadores</div></div>
-   </section>
-  </div>
- </section>
- <button class="play" id="play">▶ &nbsp; PLAY ONLINE</button>
- <div class="demo" id="demo"></div>
- <div class="note">AGT MOD • PRÉVIA VISUAL — DADOS DE DEMONSTRAÇÃO</div>
-</main>
+.play{margin:10px 0 0}
+.sidebar{width:250px;align-self:center;padding:18px 16px;border:1px solid #b86cff66;border-radius:18px;background:linear-gradient(155deg,#1b1029eF,#0d0917f2);box-shadow:0 0 28px #a855f733,inset 0 1px #ffffff18;backdrop-filter:blur(13px)}
+.sidebar-title{font-size:12px;font-weight:900;letter-spacing:2px;color:#ead7ff;margin:0 0 14px;text-shadow:0 0 12px #a855f7}
+.online-player{padding:11px 0;border-bottom:1px solid #ffffff18}
+.online-player:last-child{border-bottom:0}
+.online-name{font-size:12px;font-weight:bold;color:#fff}
+.online-ip{font-size:10px;color:#c6a6e6;margin-top:5px;letter-spacing:.3px}
+.online-state{font-size:9px;color:#8fffc4;margin-top:5px;letter-spacing:1px}
+.online-state.idle{color:#a99ab9}
+@media(max-width:760px){body{display:block;padding:18px 12px}.layout{width:100%;max-width:440px;margin:0 auto;display:flex;flex-direction:column;gap:16px}.shell{flex:none;width:100%;max-width:440px}.sidebar{width:100%;max-width:440px}.brand{font-size:clamp(68px,18vw,92px)}}
+
+</style></head><body><div class="sky"><div class="glow one"></div><div class="glow two"></div><div class="ring"></div><div class="neon-line"></div><div class="neon-line second"></div><div class="dots"></div></div>
+<div class="layout">
+<main class="shell"><div class="brand">AGT</div><div class="arena">ARENA</div>
+<div class="field"><label for="nick">Nickname</label><input id="nick" maxlength="24" placeholder="Digite seu nickname" autocomplete="nickname"></div>
+<div class="field"><label for="server">Servidor</label><select id="server"><option value="Brasil">Brasil</option></select></div>
+
+<button class="settings" id="settings">⚙ &nbsp; SETTINGS</button>
+<button class="edit" id="editSkin">✦ &nbsp; EDIT SKIN</button>
+<button class="play" id="play">▶ &nbsp; PLAY ONLINE</button>
+<div class="demo" id="demo"></div><div class="note">AGT MOD • PRÉVIA VISUAL 0.1</div></main>
+<aside class="sidebar">
+ <h2 class="sidebar-title">JOGADORES ONLINE</h2>
+ <div class="online-player"><div class="online-name">AGT • Shadow</div><div class="online-ip">IP: 192.0.2.10:4444</div><div class="online-state">JOGANDO</div></div>
+ <div class="online-player"><div class="online-name">AGT • Ghost</div><div class="online-ip">IP: 198.51.100.12:4444</div><div class="online-state">JOGANDO</div></div>
+ <div class="online-player"><div class="online-name">AGT • Venom</div><div class="online-ip">IP: 203.0.113.25:4444</div><div class="online-state">JOGANDO</div></div>
+ <div class="online-player"><div class="online-name">AGT • Frost</div><div class="online-state idle">ONLINE • NÃO ESTÁ JOGANDO</div></div>
+</aside>
+</div>
 <script>
+
 const demo=document.getElementById("demo");
-document.getElementById("editSkin").addEventListener("click",()=>document.getElementById("skinEditor").classList.toggle("open"));
-document.querySelectorAll(".skin-choice").forEach(button=>button.addEventListener("click",()=>{
- document.querySelectorAll(".skin-choice").forEach(item=>item.classList.remove("selected"));
- button.classList.add("selected");
- document.getElementById("skinName").textContent="Selecionada: "+button.dataset.skin;
-}));
-document.getElementById("play").addEventListener("click",()=>{
- const nick=document.getElementById("nick").value.trim();
- demo.classList.add("show");
- demo.textContent=nick?("Prévia: "+nick+" • Servidor Brasil. A conexão com o Slither.io ainda não está implementada."):("Digite seu nickname para continuar. Esta é apenas uma demonstração visual.");
-});
-document.getElementById("settings").addEventListener("click",()=>{
- demo.classList.add("show");
- demo.textContent="As configurações serão adicionadas depois da aprovação do visual.";
-});
-</script>
-</body>
-</html>
+document.getElementById("play").addEventListener("click",()=>{const nick=document.getElementById("nick").value.trim();demo.classList.add("show");demo.textContent=nick?("Prévia: "+nick+" • "+document.getElementById("server").value+"+". O jogo online ainda não está conectado nesta demonstração."):"Digite seu nickname para visualizar a configuração de entrada. O jogo online ainda não está conectado nesta demonstração.";});
+document.getElementById("settings").addEventListener("click",()=>{demo.classList.add("show");demo.textContent="Painel de configurações: esta área será detalhada depois que você aprovar o visual da tela inicial.";});
+document.getElementById("editSkin").addEventListener("click",()=>{demo.classList.add("show");demo.textContent="Editor de skin: aqui será aberta a seleção da aparência da sua minhoca.";});
+</script></body></html>
